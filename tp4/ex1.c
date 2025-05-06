@@ -18,6 +18,23 @@ double Racine_Carree(double n, double epsilon) {
     return (a + b) / 2.0;
 }
 
+// Fonction récursive pour trouver le minimum
+int trouverMinimum(int tab[], int gauche, int droite) {
+    // Cas de base : un seul élément
+    if (gauche == droite) {
+        return tab[gauche];
+    }
+
+    // Diviser le tableau en deux
+    int milieu = (gauche + droite) / 2;
+
+    // Appels récursifs sur les deux moitiés
+    int minGauche = trouverMinimum(tab, gauche, milieu);
+    int minDroite = trouverMinimum(tab, milieu + 1, droite);
+
+    // Combiner : retourner le plus petit des deux
+    return (minGauche < minDroite) ? minGauche : minDroite;
+}
 
 int recherche_dicho(int *tab, int n, int elt) {
 	int g = 0;
